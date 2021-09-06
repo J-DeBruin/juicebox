@@ -10,7 +10,8 @@ const {
   addTagsToPost,
   updatePost,
   getPostsByUser,
-  getUserById
+  getUserById,
+  getPostsByTagName
   } = require('./index');
 
 // = = = = = = = = = DROP TABLES (dropTables) = = = = = = = = = = = = = = = = *
@@ -197,9 +198,9 @@ async function testDB() {
       tags: ["#youcandoanything", "#redfish", "#bluefish"]
     });
 
-    // console.log("Calling getPostsByTagName with #happy");
-    // const postsWithHappy = await getPostsByTagName("#happy");
-    // console.log("Result:", postsWithHappy);
+    console.log("Calling getPostsByTagName with #happy");
+    const postsWithHappy = await getPostsByTagName("#happy");
+    console.log("Result:", postsWithHappy);
 
     console.log("Result:", updatePostTagsResult);
 
