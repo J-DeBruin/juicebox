@@ -9,6 +9,7 @@ const {
   getUserById
 } = require('./index');
 
+// = = = = = = = = = DROP TABLES (dropTables) = = = = = = = = = = = = = = = = *
 async function dropTables() {
   try {
     console.log("Starting to drop tables...");
@@ -28,6 +29,7 @@ async function dropTables() {
   }
 };
 
+// = = = = = = = = = CREATE TABLES (createTables) = = = = = = = = = = = = = = = = *
 async function createTables() {
   try {
     console.log("Starting to build tables...");
@@ -60,6 +62,7 @@ async function createTables() {
   }
 };
 
+// = = = = = = = = = CREATE INITIAL USERS (createInitialUsers) = = = = = = = = = = = = = = = = *
 async function createInitialUsers() {
   try {
     console.log("Starting to create users...");
@@ -75,7 +78,7 @@ async function createInitialUsers() {
   }
 };
 
-// CREATE INITIAL POSTS (createInitialPosts)
+// = = = = = = = = =  CREATE INITIAL POSTS (createInitialPosts) = = = = = = = = = = = = = = = = *
 async function createInitialPosts() {
   try {
     const [albert, sandra, glamgal] = await getAllUsers();
@@ -92,6 +95,7 @@ async function createInitialPosts() {
   }
 };
 
+// = = = = = = = = = REBUILD DATABASE (rebuildDB) = = = = = = = = = = = = = = = = *
 async function rebuildDB() {
   try {
     client.connect();
@@ -106,6 +110,7 @@ async function rebuildDB() {
   }
 };
 
+// = = = = = = = = = TEST DATABASE (testDB) = = = = = = = = = = = = = = = = *
 async function testDB() {
   try {
     console.log("Starting to test database...");

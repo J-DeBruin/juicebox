@@ -1,7 +1,7 @@
 const { Client } = require('pg'); 
 const client = new Client('postgres://localhost:5432/juicebox-dev');
 
-// = = = = = = = = = CREATE USER (createUser) = = = = = = = = = = = = = = =
+// = = = = = = = = = CREATE USER (createUser) = = = = = = = = = = = = = = = *
 async function createUser({ 
   username, 
   password,
@@ -78,7 +78,7 @@ async function updateUser(id, fields = {}) {
   if (setString.length === 0) {
     return;
   }
-
+//potentially where hte issue is?
   try {
     const {rows: [ user ]} = await client.query(`
       UPDATE users
@@ -93,7 +93,7 @@ async function updateUser(id, fields = {}) {
   }
 }
 
-// = = = = = = = = = UPDATE POST (updatePost) = = = = = = = = = = = = = =
+// = = = = = = = = = UPDATE POST (updatePost) = = = = = = = = = = = = = = issue?
 async function updatePost(id, fields = {
   title,
   content,
@@ -108,7 +108,7 @@ async function updatePost(id, fields = {
 
   try {
     const {rows: [ post ]} = await client.query(`
-      UPDATE post
+      UPDATE posts
       SET ${ setString }
       WHERE id=${ id }
       RETURNING *;
