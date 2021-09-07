@@ -305,6 +305,19 @@ async function getUserById(userId) {
   }
 };
 
+// = = = = = = = = = GET ALL TAGS (getAllTags) = = = = = = = = = = = = = = = = *
+async function getAllTags() {
+  try {
+    const { rows } = await client.query(
+      `SELECT *
+      FROM tags;
+    `);
+    return rows;  
+  } catch (error) {
+      throw error;
+  }
+};
+
 // = = = = = = = = = GET POSTS BY TAG NAME (getPostsByTagName) = = = = = = = = = = = = = = = = *
 async function getPostsByTagName(tagName) {
   try {
@@ -339,4 +352,5 @@ module.exports = {
   createPostTag,
   addTagsToPost,
   getPostsByTagName,
+  getAllTags,
 }

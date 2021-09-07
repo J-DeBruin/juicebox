@@ -11,7 +11,8 @@ const {
   updatePost,
   getPostsByUser,
   getUserById,
-  getPostsByTagName
+  getPostsByTagName,
+  getAllTags
   } = require('./index');
 
 // = = = = = = = = = DROP TABLES (dropTables) = = = = = = = = = = = = = = = = *
