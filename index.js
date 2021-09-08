@@ -40,7 +40,7 @@ server.use('/api', apiRouter);
 const { client } = require('./db');
 client.connect();
 
-const PORT = 3000;
+const {PORT = 3000} = process.env;
 server.listen(PORT, () => {
   console.log('The server is up on port', PORT)
 });
