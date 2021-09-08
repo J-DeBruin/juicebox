@@ -5,12 +5,13 @@ const jwt = require('jsonwebtoken');
 const { getUserById } = require('../db');
 const { JWT_SECRET } = process.env;
 
-// set `req.user` if possible
+// = = = = = = = = = = GETTING OUR TOKEN = = = = = = = = = = = = = = = 
+
 apiRouter.use(async (req, res, next) => {
   const prefix = 'Bearer ';
   const auth = req.header('Authorization');
 
-  if (!auth) { // nothing to see here
+  if (!auth) { 
     next();
   } else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length);
@@ -33,6 +34,17 @@ apiRouter.use(async (req, res, next) => {
   }
 });
 
+// = = = = = = = = = = = TESTING OUR TOKEN = = = = = = = = = = = = = = = 
+apiRouter.use((req, res, next) => {
+    if (req.user) {
+      console.log("User is set:", req.user);
+    }
+  
+    next();
+  });
+
+  // = = = = = = = = = = ROUTERS = = = = = = = = = = = = = = = = = = = = 
+
 const usersRouter = require('./users');
 apiRouter.use('/users', usersRouter);
 
@@ -42,6 +54,7 @@ apiRouter.use('/posts', postsRouter);
 const tagsRouter = require('./tags');
 apiRouter.use('/tags', tagsRouter);
 
+// = = = = = = = = = = ERROR HANDLER = = = = = = = = = = = = = = = = = 
 apiRouter.use((error, req, res, next) => {
     res.send(error);
   });
