@@ -9,7 +9,7 @@ usersRouter.use((req, res, next) => {
 
   next(); 
 });
-const { getAllUsers, createUser } = require('../db');
+const { getAllUsers, createUser, getUserByUsername } = require('../db');
 
 // UPDATE
 usersRouter.get('/', async (req, res) => {
@@ -34,14 +34,13 @@ usersRouter.post('/login', async (req, res, next) => {
 
   try {
     const user = await getUserByUsername(username);
-
     if (user && user.password == password) {
       // create token & return to user
-      jwt.sign({
-        user: id,
-        user: username
+      const token = jwt.sign({
+        userId: user.id,
+        username: user.username
       }, process.env.JWT_SECRET)
-      res.send({ password });
+      res.send({ token });
     } else {
       next({ 
         name: 'IncorrectCredentialsError', 
